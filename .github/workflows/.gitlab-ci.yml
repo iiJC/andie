@@ -83,6 +83,9 @@ jobs:
       - name: Build JAR
         run: gradle -Dorg.gradle.daemon=false jar
 
+      - name: List build/libs contents
+        run: ls -la build/libs
+
       - name: Archive JAR artifact
         uses: actions/upload-artifact@v2
         with:
