@@ -7,10 +7,10 @@ import java.util.Properties;
  * Manages the application settings, including loading and storing
  * configurations,
  * and handling language specific properties.
+ * 
  * @author Jonathan Chan
  * @version 1.0
  */
-
 public class Settings {
 
     // Path to the configuration file
@@ -83,16 +83,13 @@ public class Settings {
             default -> "en_lang.properties";
         };
 
-        String relativePath = "./src/cosc202/" + fileName;
-        File file = new File(relativePath);
-        if (!file.exists()) {
-            System.err.println("Language file '" + fileName + "' not found at path: " + file.getAbsolutePath());
-            return;
-        }
-
-        // Load the language specific properties from the file
-        try (FileReader reader = new FileReader(file)) {
-            languageProperties.load(reader);
+        // Load the language specific properties from the resource file
+        try (InputStream input = Settings.class.getClassLoader().getResourceAsStream("cosc202/" + fileName)) {
+            if (input == null) {
+                System.err.println("Language file '" + fileName + "' not found in resources.");
+                return;
+            }
+            languageProperties.load(input);
         } catch (IOException e) {
             System.err.println(Settings.getLanguageProperty("WARN_LANGUAGE_LOAD") + e.getMessage());
         }
