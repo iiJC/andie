@@ -8,7 +8,6 @@ import java.util.Properties;
  * configurations,
  * and handling language specific properties.
  * 
- * @author Jonathan Chan
  * @version 1.0
  */
 public class Settings {
@@ -84,7 +83,7 @@ public class Settings {
         };
 
         // Load the language specific properties from the resource file
-        try (InputStream input = Settings.class.getClassLoader().getResourceAsStream("cosc202/" + fileName)) {
+        try (InputStream input = Settings.class.getClassLoader().getResourceAsStream(fileName)) {
             if (input == null) {
                 System.err.println("Language file '" + fileName + "' not found in resources.");
                 return;
