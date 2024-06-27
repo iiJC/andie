@@ -123,7 +123,7 @@ Restart the program to see the applied language changes.
 
 If you encounter errors while building or running the source code with Gradle, try running: `./gradlew clean build` as it often solves the issue.
 
-For more information, refer to the [API Javadoc](**https://cosc202-mavericks.cspages.otago.ac.nz/andie**).
+For more information, refer to the [API Javadoc](https://iijc.github.io/andie/).
 
 ## How the code was tested
 
