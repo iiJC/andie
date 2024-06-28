@@ -133,86 +133,8 @@ For more information, refer to the [API Javadoc](https://iijc.github.io/andie/).
 
 - **Unit Testing and Continuous Integration** - JUnit tests were added to a CI pipeline to ensure all tests in the main branch pass, and checks that the main branch can compile and build properly.
 
-## Who did what
-
-**Angus:**
-
-- Sharpen Filter
-  - By following similar instructions displayed in the lab book for the MeanFilter operation, I tested and implemented the Sharpen Filter through convolution with the suggested 3x3 Kernel. The action can be performed through the Filter tab in the menu.
-- Colour Channel Cycling
-  - I tested this implementation through creating a JComboBox which allowed me to run multiple different options of RGB colour channels through matching each option to a specific indexed action. In the ColourChannelCycling class, I have used a switch statement to match the index to the chosen RGB re-order option. This action can be executed through the Colours tab in the menu.
-
-**Hadrien**
-
-- Median Filter
-- Gaussian Blur Filter
-  - I tested this using a print message to check that the kernel was the same as the one on the lab instructions
-- Emboss Filter, Sobel Filter
-- Convolution (with padding that takes the nearest valid pixel)
-  - I tested this with unit tests. I ran the convolution on Excel and compared the numbers to make sure that my code was doing the right things.
-- Laplacian Filter
-  - Added the Laplacian filter feature, which is an edge detection filter.
-
-**Marcus:**
-
-- Error handling:
-
-  - I implemented try and catch statements within the resize and transform action menu classes to prevent user input from crashing the program by inputting anything that wouldn’t be a positive number. I complemented the try and catch statements with GUI boxes that helped visualize to the users what occurred, giving them instructions on how to prevent the next mistake so the program can run smoothly. I tested these different catch statements by trying various inputs such as letters, decimals, and negative numbers to see how responsive it was. I made each error message unique so that users could see specifically what they did wrong.
-
-- Image Inversion:
-
-  - By reviewing the greyscale code, I was able to recreate the image inversion action. This simply inverts the color of the image by iterating over the pixels and updating the RGB values to 255 minus their original values. I tested it by comparing the inverted image to the image on Blackboard and other online image editors to see if ANDIE was producing similar results.  Can be accessed through \*\*Colour > Image Inversion.
-
-- Image Resize:
-
-  - Scales the image up or down depending on the user's input on what percentage the image should scale to. If the user enters 10, the image would shrink down to 10% of its original size. If the user enters 150, the image would scale up to 150% of its original size. Can be accessed through the TransformActionMenu. I tested it by inputting different numbers to see if it scaled appropriately and implemented debug statements while developing to see if all the methods were running.
-
-- TransformActionMenu:
-
-  - Coded the TransformAction menu so Ned and I could separate the rotate and resize features from other menus, as resize and rotate focus on transforming an entity while the other menu provides filters. I also used this menu to set up try and catch statements for user input error handling so the program doesn't crash while people use the resize image feature.
-
-- Transparency
-
-  - The transparency action was one of the additional features that I contributed towards the group project. It can be accessed through **Transform → Transparency**. The user is provided with a slider ranging from 0 - 100. 0 being fully transparent and 100 being fully opaque. The user will direct the slider to where they want, say 50, then the transparency filter will reduce the opacity of the image to 50% of its original opacity. I wanted to implement this feature as I believed it would complement the draw function. I tested this feature by going through the edge cases with various images such as JPG, PNG, large image files, small image files, and testing with images that were already partially transparent. I proceeded with some unit testing to ensure all the primary aspects and methods were returning the appropriate values.
-  - This is what I tested:
-
-    - Full-transparent: passed, all pixels had a alpha of 0.
-    - Tested fully opaque: passed, all pixels had a alpha of 255.
-    - Intermediate transparency: passed, testing at each indice on the slider from 0-100.
-    - Tested null-image input: passed, with try and catch message popping up.
-    - Tested over the max transparency, such as 101: passed with images still retaining alpha values of 255.
-    - Tested negative transparency values, such as -1: passed with images retaining alpha values of 0.
-
-  - There was some initial issue’s with getting the transparency slider to show the image’s current opacity and return to it’s original opacity. However that was debugged via providing a transparencylevel, and it was tested thoroughly to ensure it worked appropriately.
-
-- Checkered BackGround:
-
-  - The checkered background was a simple feature that I wanted to implement and was added to complement the transparency feature. It also made ANDIE look more professional and comparable to other image editors such as Photoshop or Google Drawings. The checkered background is produced in the ImagePanel when ANDIE is initially opened. I tested this rigorously by adding multiple images of different sizes and formats, while testing each implemented feature to ensure it didn’t conflict with the image editor. I also tested it by stretching the panel of ANDIE and images to ensure the checkered background worked appropriately.
-
-- RandomScattering:
-
-  - This feature can be accessed through **Filter → ScatterFilter**. This filter takes an input from the user, ranging from 1 - Integer.MAX_VALUE. The image will randomly scatter depending on the radius provided by the user. I used JUnit to run a number of unit tests on the RandomScatteringFilter class to make sure it was reliable and functional. Large radius scattering, null input, edge handling, and basic scattering were among the scenarios that were explored in the testing. The outcomes demonstrated that even with a huge radius, the filter successfully scattered pixels and handled edge pixels by clamping them within image bounds. It also correctly applied a random scattering effect within the set radius and returned null for null input images. These tests verify that the RandomScatteringFilter class operates as anticipated, yielding dependable outcomes under various circumstances.
-
-- BlockAveraging:
-
-  - This feature can be accessed through **Filter → Block Averaging Filter**. This filter provides two input options: width and height. The user can specify rectangles or squares based on their input. The image will pixelate to the specifications based on the user’s input. I used JUnit to run a number of unit tests on the BlockAveragingFilter class to make sure it functions and is reliable. The tests addressed a wide range of circumstances, such as non-ARGB image handling, edge handling, null input, and basic block averaging. The findings demonstrated that the filter handled edge cases where blocks extend beyond image boundaries, correctly applied the block averaging effect by averaging the colors within designated block dimensions, returned null for null input images, and correctly converted non-ARGB images to ARGB before applying the filter. These tests verify that the BlockAveragingFilter class operates as anticipated, yielding dependable and consistent outcomes under various circumstances.
-
-- Additional error-handling:
-  - With more exception handling for the Part 2 deliverables, I wanted to focus on preventing users from entering errors overall. Therefore, I opted for the approach of implementing JSpinner’s, enabling the users to specify the values they want while preventing them from making user errors such as inputting decimals, letters, or negative values. This created a more controlled environment within the RandomScattering and BlockAveraging filters. For the transparency, I implemented a slider. Another feature I added was a dialogue box which would appear if users tried using a feature without loading an image, instructing them that an image had to be loaded before the feature could be used. Overall, I believe these were improvements. I tested these features thoroughly throughout the different actions by trying to provide null inputs, incorrect files, and case studies in which the max and minimum inputs were provided along with random numbers to see how the program would react.
-
-Overall I used a variety of photos to test each feature, including ones in PNG and JPG formats, both large and small in size, transparent, and with varying colors and alpha ranges. This extensive testing made sure the functions work properly in a variety of situations.
-
-**Ned:**
-
-- Exception Handling
-  - I created exceptions using try and catch statements for things like trying to use filters with no image selected, and trying to open a non-image file, which originally crashed the program. It now shows an error message (from Marcus) and returns to the program.
-- Image rotations
-  - Creates a new image with either the same height and width if changing 180 degrees or swapped height and widths for 90 and 270 degrees, and uses the pixels of the original to fill it at the desired angle. This can be accesed from **Transform > Rotate**.
-- Image Flip
-  - Creates a new image with the same height and width and fills it with the pixels from the original in a reversed vertical or horizontal order. This can be accessed from **Transform > Horizontal Flip** or **Transform > Vertical Flip**.
-
-**Jonathan:**
-
+## My Contributions:
+Original Project Contributions:
 - Exception Handling
   - Standardized error messages and dialogue into each of the lang.properties
 - Multilingual Support
@@ -232,3 +154,9 @@ Overall I used a variety of photos to test each feature, including ones in PNG a
   - Copying the current image and any applied operations to the Clipboard
 - README User Guide
 - CI Pipeline
+
+GitHub Release:
+- Adapting the project CI to GitHub
+- Integrating documentation into GitHub Wiki, rather than a giant README.
+
+For notes on features not developed by me, or notes on my modifications to the others' features can be found in the wiki.
