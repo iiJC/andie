@@ -21,7 +21,8 @@
 
 
 ## Build Status
-[![Pipeline Status](https://altitude.otago.ac.nz/cosc202-mavericks/andie/badges/main/pipeline.svg)](https://altitude.otago.ac.nz/cosc202-mavericks/andie/pipelines)
+[![Java CI](https://github.com/iiJC/andie/actions/workflows/.gitlab-ci.yml/badge.svg)](https://github.com/iiJC/andie/actions/workflows/.gitlab-ci.yml)
+[![pages-build-deployment](https://github.com/iiJC/andie/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/iiJC/andie/actions/workflows/pages/pages-build-deployment)
 
 ## What is ANDIE?
 
