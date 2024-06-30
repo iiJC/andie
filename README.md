@@ -160,4 +160,5 @@ GitHub Release:
 - Adapting the project CI to GitHub
 - Integrating documentation into GitHub Wiki, rather than a giant README.
 
-For notes on features not developed by me, or notes on my modifications to the others' features can be found in the wiki.
+For notes on features not developed by me, or notes on my modifications to the others' features, you can find more information in the [wiki](https://github.com/iiJC/andie/wiki/Team-Contributions-(Who-did-what)).
+
