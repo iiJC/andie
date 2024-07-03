@@ -13,8 +13,8 @@ repositories {
     mavenCentral()
 }
 
-sourceCompatibility = '17'
-targetCompatibility = '17'
+sourceCompatibility = '11'
+targetCompatibility = '11'
 
 sourceSets {
     main {
@@ -22,7 +22,7 @@ sourceSets {
             srcDirs = ['src/resources']
         }
         java {
-            srcDirs = ['src/main/java']
+            srcDirs = ['src']
         }
     }
     test {
