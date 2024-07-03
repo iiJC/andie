@@ -7,13 +7,15 @@ import java.util.Properties;
  * Manages the application settings, including loading and storing
  * configurations,
  * and handling language specific properties.
- * 
- * @version 1.0
+ * @author Jonathan Chan
+ * @version 1.1
  */
 public class Settings {
 
     // Path to the configuration file
     private static final String CONFIG_FILE_PATH = "config.properties";
+    // Directory for the language files
+    private static final String LANGUAGE_DIRECTORY = "/resources/languages/";
     // Properties object to hold the configuration settings
     private static Properties configProperties = new Properties();
     // Properties object to hold the language specific texts
@@ -82,13 +84,16 @@ public class Settings {
             default -> "en_lang.properties";
         };
 
-        // Load the language specific properties from the resource file
-        try (InputStream input = Settings.class.getClassLoader().getResourceAsStream(fileName)) {
-            if (input == null) {
-                System.err.println("Language file '" + fileName + "' not found in resources.");
-                return;
-            }
-            languageProperties.load(input);
+        String relativePath = LANGUAGE_DIRECTORY + fileName;
+        InputStream inputStream = Settings.class.getResourceAsStream(relativePath);
+        if (inputStream == null) {
+            System.err.println("Language file '" + fileName + "' not found at path: " + relativePath);
+            return;
+        }
+
+        // Load the language specific properties from the file
+        try (InputStreamReader reader = new InputStreamReader(inputStream)) {
+            languageProperties.load(reader);
         } catch (IOException e) {
             System.err.println(Settings.getLanguageProperty("WARN_LANGUAGE_LOAD") + e.getMessage());
         }
