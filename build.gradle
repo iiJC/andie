@@ -42,6 +42,12 @@ jar {
             'Main-Class': defaultMainClassName
         )
     }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    from(sourceSets.main.resources.srcDirs) {
+        into('resources')
+    }
 }
 
 test {
